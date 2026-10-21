@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://vqvi8qxih4hm"]
+
+[ext_resource type="Script" uid="uid://cib63im2i5xy1" path="res://Scenes/Board/Pieces/Team Chess/chess_queen.gd" id="1_ponku"]
+[ext_resource type="Script" uid="uid://dvpgaxcc8url" path="res://Scenes/Board/Pieces/Movement Rules/move_rule_omnidirectional.gd" id="2_d1eth"]
+[ext_resource type="Texture2D" uid="uid://irk6p0u6khdl" path="res://Assets/Piece Sprites/TacticsChessSpriteSheet_16bit.png" id="3_ponku"]
+
+[sub_resource type="Resource" id="Resource_jvkf1"]
+script = ExtResource("2_d1eth")
+metadata/_custom_type_script = "uid://dvpgaxcc8url"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1eth"]
+atlas = ExtResource("3_ponku")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kdig3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1eth")
+}],
+"loop": 1,
+"name": &"hover",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1eth")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1eth")
+}],
+"loop": 1,
+"name": &"selected",
+"speed": 5.0
+}]
+
+[node name="Chess_queen" type="Node2D" unique_id=389295770]
+script = ExtResource("1_ponku")
+moveRule = SubResource("Resource_jvkf1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=10829470]
+sprite_frames = SubResource("SpriteFrames_kdig3")
+animation = &"selected"

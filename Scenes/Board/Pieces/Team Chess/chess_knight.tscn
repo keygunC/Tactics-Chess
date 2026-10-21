@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://ba6lo5reyuput"]
+
+[ext_resource type="Script" uid="uid://bv3qamjcgm61v" path="res://Scenes/Board/Pieces/Team Chess/chess_knight.gd" id="1_04nep"]
+[ext_resource type="Script" uid="uid://dh8tyofuax1km" path="res://Scenes/Board/Pieces/Movement Rules/move_rule_jump_l.gd" id="2_3na4l"]
+[ext_resource type="Texture2D" uid="uid://irk6p0u6khdl" path="res://Assets/Piece Sprites/TacticsChessSpriteSheet_16bit.png" id="3_3na4l"]
+
+[sub_resource type="Resource" id="Resource_0eewm"]
+script = ExtResource("2_3na4l")
+metadata/_custom_type_script = "uid://dh8tyofuax1km"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0eewm"]
+atlas = ExtResource("3_3na4l")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jghw0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0eewm")
+}],
+"loop": 1,
+"name": &"hover",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0eewm")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0eewm")
+}],
+"loop": 1,
+"name": &"selected",
+"speed": 5.0
+}]
+
+[node name="Chess_knight" type="Node2D" unique_id=1203602967]
+script = ExtResource("1_04nep")
+moveRule = SubResource("Resource_0eewm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2118033217]
+sprite_frames = SubResource("SpriteFrames_jghw0")
+animation = &"selected"

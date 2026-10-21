@@ -1,0 +1,155 @@
+[gd_scene format=4 uid="uid://cxpaikstg20t8"]
+
+[ext_resource type="Script" uid="uid://crbn0lt1lc1hj" path="res://Scenes/Board/board.gd" id="1_me64r"]
+[ext_resource type="Script" uid="uid://b2sxesj656g6d" path="res://Scenes/Board/Logics/turn_handler.gd" id="2_me64r"]
+[ext_resource type="Script" uid="uid://cap1nji744ita" path="res://Scenes/Board/Visuals/animation_handler.gd" id="3_dkxek"]
+[ext_resource type="Script" uid="uid://cdrxt287e6i5a" path="res://Scenes/Board/Logics/win_handler.gd" id="3_gti8d"]
+[ext_resource type="Script" uid="uid://s5ralt560gxk" path="res://Scenes/Board/Logics/grid.gd" id="4_gti8d"]
+[ext_resource type="Texture2D" uid="uid://d26mcbj4emgbx" path="res://Assets/Tile_Sprites_16bit.png" id="5_gti8d"]
+[ext_resource type="Script" uid="uid://b8ii3vqwq8e5p" path="res://Scenes/Board/Visuals/marker.gd" id="7_xqaal"]
+[ext_resource type="Script" uid="uid://g46d0y0gehu1" path="res://Scenes/Board/Logics/pieces.gd" id="8_dkxek"]
+[ext_resource type="Script" uid="uid://bywqrnvssd34c" path="res://Scenes/Board/Visuals/move_indicator.gd" id="9_63xfs"]
+[ext_resource type="Texture2D" uid="uid://h0m40yym115a" path="res://Assets/Highlight_Sprites_16bit.png" id="9_gti8d"]
+[ext_resource type="Script" uid="uid://5esxluvu865t" path="res://Scenes/Board/Visuals/hud.gd" id="10_me64r"]
+[ext_resource type="Script" uid="uid://pdvrnvj6a1px" path="res://Scenes/Board/Visuals/action_set_ui.gd" id="12_dkxek"]
+
+[sub_resource type="TileSet" id="TileSet_o1aky"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkxek"]
+texture = ExtResource("5_gti8d")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+3:2/0 = 0
+2:2/0 = 0
+2:3/0 = 0
+2:4/0 = 0
+2:5/0 = 0
+2:6/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+1:7/0 = 0
+0:7/0 = 0
+0:6/0 = 0
+0:5/0 = 0
+0:4/0 = 0
+1:5/0 = 0
+1:4/0 = 0
+1:6/0 = 0
+3:5/0 = 0
+3:4/0 = 0
+3:3/0 = 0
+3:6/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_k2e45"]
+sources/0 = SubResource("TileSetAtlasSource_dkxek")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_me64r"]
+texture = ExtResource("9_gti8d")
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_nwwfm"]
+sources/0 = SubResource("TileSetAtlasSource_me64r")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_brcfe"]
+texture = ExtResource("9_gti8d")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_aa8k8"]
+sources/0 = SubResource("TileSetAtlasSource_brcfe")
+
+[node name="Board" type="Node2D" unique_id=18941622]
+script = ExtResource("1_me64r")
+
+[node name="TurnHandler" type="Node" parent="." unique_id=583407355]
+unique_name_in_owner = true
+script = ExtResource("2_me64r")
+
+[node name="WinHandler" type="Node" parent="." unique_id=1355466158]
+unique_name_in_owner = true
+script = ExtResource("3_gti8d")
+
+[node name="AnimationHandler" type="Node2D" parent="." unique_id=350115824]
+unique_name_in_owner = true
+script = ExtResource("3_dkxek")
+
+[node name="Grid" type="TileMapLayer" parent="." unique_id=856722380]
+unique_name_in_owner = true
+position = Vector2(16, 16)
+tile_set = SubResource("TileSet_o1aky")
+script = ExtResource("4_gti8d")
+
+[node name="Floor" type="TileMapLayer" parent="." unique_id=103159279]
+position = Vector2(16, 16)
+tile_map_data = PackedByteArray("AAAAAAAAAAADAAEAAAABAAEAAAADAAEAAAACAAAAAAADAAEAAAAAAAIAAAADAAEAAAABAAMAAAADAAEAAAADAAEAAAADAAEAAAAEAAAAAAADAAEAAAAEAAIAAAADAAEAAAADAAMAAAADAAEAAAACAAQAAAADAAEAAAAAAAQAAAADAAEAAAAEAAQAAAADAAEAAAAFAAMAAAADAAEAAAAFAAEAAAADAAEAAAAGAAAAAAADAAEAAAAGAAIAAAADAAEAAAAGAAQAAAADAAEAAAAHAAEAAAADAAEAAAAHAAMAAAADAAEAAAABAAUAAAADAAEAAAADAAUAAAADAAEAAAAFAAUAAAADAAEAAAAHAAUAAAADAAEAAAAAAAYAAAADAAEAAAACAAYAAAADAAEAAAAEAAYAAAADAAEAAAAGAAYAAAADAAEAAAADAAAAAAADAAIAAAAFAAAAAAADAAIAAAAHAAAAAAADAAIAAAAGAAEAAAADAAIAAAAEAAEAAAADAAIAAAAAAAEAAAADAAIAAAABAAIAAAADAAIAAAADAAIAAAADAAIAAAAFAAIAAAADAAIAAAAHAAIAAAADAAIAAAAGAAMAAAADAAIAAAAEAAMAAAADAAIAAAACAAMAAAADAAIAAAAAAAMAAAADAAIAAAABAAQAAAADAAIAAAAAAAUAAAADAAIAAAABAAYAAAADAAIAAAACAAUAAAADAAIAAAADAAYAAAADAAIAAAAEAAUAAAADAAIAAAADAAQAAAADAAIAAAAFAAQAAAADAAIAAAAFAAYAAAADAAIAAAAGAAUAAAADAAIAAAAHAAQAAAADAAIAAAAHAAYAAAADAAIAAAABAAcAAAADAAEAAAADAAcAAAADAAEAAAAFAAcAAAADAAEAAAAHAAcAAAADAAEAAAAAAAcAAAADAAIAAAACAAcAAAADAAIAAAAEAAcAAAADAAIAAAAGAAcAAAADAAIAAAABAAAAAAADAAIAAAACAAIAAAADAAEAAAACAAEAAAADAAIAAAA=")
+tile_set = SubResource("TileSet_k2e45")
+
+[node name="Marker" type="TileMapLayer" parent="." unique_id=1747511358]
+unique_name_in_owner = true
+position = Vector2(16, 16)
+tile_set = SubResource("TileSet_nwwfm")
+script = ExtResource("7_xqaal")
+
+[node name="Pieces" type="Node2D" parent="." unique_id=633244862]
+unique_name_in_owner = true
+script = ExtResource("8_dkxek")
+
+[node name="MoveIndicator" type="TileMapLayer" parent="." unique_id=161317658]
+unique_name_in_owner = true
+position = Vector2(16, 16)
+tile_set = SubResource("TileSet_aa8k8")
+script = ExtResource("9_63xfs")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=72369378]
+unique_name_in_owner = true
+script = ExtResource("10_me64r")
+
+[node name="LabelWinResult" type="Label" parent="HUD" unique_id=1323453950]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.5
+offset_top = -22.5
+offset_right = 115.5
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="LabelTeamTurn" type="Label" parent="HUD" unique_id=632782846]
+offset_right = 54.0
+offset_bottom = 12.0
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 8
+text = "No one's Turn"
+
+[node name="ActionSetUI" type="HBoxContainer" parent="HUD" unique_id=977095916]
+offset_top = 144.0
+offset_right = 160.0
+offset_bottom = 160.0
+alignment = 1
+script = ExtResource("12_dkxek")
+
+[connection signal="signal_new_turn" from="TurnHandler" to="." method="_on_turn_handler_signal_new_turn"]

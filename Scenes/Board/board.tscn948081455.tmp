@@ -1,0 +1,124 @@
+[gd_scene format=4 uid="uid://7kx0hopou041"]
+
+[ext_resource type="Script" uid="uid://cnjgjeu6codv1" path="res://Scenes/Board/board.gd" id="1_vjsom"]
+[ext_resource type="Texture2D" uid="uid://1y4l36yvqhtv" path="res://Assets/Tile_Sprites.png" id="2_upw65"]
+[ext_resource type="Script" uid="uid://b2sxesj656g6d" path="res://Scenes/Board/turn_handler.gd" id="2_vjsom"]
+[ext_resource type="Texture2D" uid="uid://4pb87q0txqs0" path="res://Assets/Highlight_Sprites.png" id="3_d7frl"]
+[ext_resource type="Script" uid="uid://cap1nji744ita" path="res://Scenes/Board/animation_handler.gd" id="3_dkxek"]
+[ext_resource type="Script" uid="uid://b8ii3vqwq8e5p" path="res://Scenes/Board/marker.gd" id="4_vjyv8"]
+[ext_resource type="PackedScene" uid="uid://3lmn8wulc3is" path="res://Scenes/Board/Pieces/Team Bell/bell_leader.tscn" id="5_hm3vq"]
+[ext_resource type="PackedScene" uid="uid://u3ekbunx333i" path="res://Scenes/Board/Pieces/Team Bell/bell_round.tscn" id="6_iehwj"]
+[ext_resource type="PackedScene" uid="uid://dqle0gnhcqvoj" path="res://Scenes/Board/Pieces/Team Placeholder/ph_leader.tscn" id="7_7iy1p"]
+[ext_resource type="PackedScene" uid="uid://dd057mdqtx405" path="res://Scenes/Board/Pieces/Team Placeholder/ph_minion.tscn" id="8_o5s4g"]
+[ext_resource type="Script" uid="uid://s5ralt560gxk" path="res://Scenes/Board/pieces.gd" id="9_2cdyc"]
+[ext_resource type="Script" uid="uid://bywqrnvssd34c" path="res://Scenes/Board/move_indicator.gd" id="11_upw65"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kry3j"]
+resource_name = "ColorTile"
+texture = ExtResource("2_upw65")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_bo1nx"]
+tile_size = Vector2i(32, 32)
+sources/1 = SubResource("TileSetAtlasSource_kry3j")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_hptm8"]
+resource_name = "Pieces"
+scenes/0/scene = ExtResource("5_hm3vq")
+scenes/1/scene = ExtResource("6_iehwj")
+scenes/2/scene = ExtResource("7_7iy1p")
+scenes/3/scene = ExtResource("8_o5s4g")
+
+[sub_resource type="TileSet" id="TileSet_8gbba"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetScenesCollectionSource_hptm8")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vjsom"]
+texture = ExtResource("3_d7frl")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_upw65"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_vjsom")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hptm8"]
+texture = ExtResource("3_d7frl")
+texture_region_size = Vector2i(32, 32)
+1:0/0 = 0
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_d1ilt"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_hptm8")
+
+[node name="Board" type="Node2D" unique_id=1776408213]
+script = ExtResource("1_vjsom")
+
+[node name="TurnHandler" type="Node" parent="." unique_id=940924248]
+unique_name_in_owner = true
+script = ExtResource("2_vjsom")
+
+[node name="AnimationHandler" type="Node2D" parent="." unique_id=489047218]
+script = ExtResource("3_dkxek")
+
+[node name="Floor" type="TileMapLayer" parent="." unique_id=1655499185]
+tile_map_data = PackedByteArray("AAAAAAAAAQAHAAAAAAABAAEAAQAHAAAAAAACAAAAAQAHAAAAAAACAAIAAQAHAAAAAAAAAAIAAQAHAAAAAAABAAMAAQAHAAAAAAADAAEAAQAHAAAAAAAEAAAAAQAHAAAAAAAEAAIAAQAHAAAAAAADAAMAAQAHAAAAAAACAAQAAQAHAAAAAAAAAAQAAQAHAAAAAAAEAAQAAQAHAAAAAAAFAAMAAQAHAAAAAAAFAAEAAQAHAAAAAAAGAAAAAQAHAAAAAAAGAAIAAQAHAAAAAAAGAAQAAQAHAAAAAAAHAAEAAQAHAAAAAAAHAAMAAQAHAAAAAAABAAUAAQAHAAAAAAADAAUAAQAHAAAAAAAFAAUAAQAHAAAAAAAHAAUAAQAHAAAAAAAAAAYAAQAHAAAAAAACAAYAAQAHAAAAAAAEAAYAAQAHAAAAAAAGAAYAAQAHAAAAAAABAAAAAQADAAEAAAADAAAAAQADAAEAAAAFAAAAAQADAAEAAAAHAAAAAQADAAEAAAAGAAEAAQADAAEAAAAEAAEAAQADAAEAAAACAAEAAQADAAEAAAAAAAEAAQADAAEAAAABAAIAAQADAAEAAAADAAIAAQADAAEAAAAFAAIAAQADAAEAAAAHAAIAAQADAAEAAAAGAAMAAQADAAEAAAAEAAMAAQADAAEAAAACAAMAAQADAAEAAAAAAAMAAQADAAEAAAABAAQAAQADAAEAAAAAAAUAAQADAAEAAAABAAYAAQADAAEAAAACAAUAAQADAAEAAAADAAYAAQADAAEAAAAEAAUAAQADAAEAAAADAAQAAQADAAEAAAAFAAQAAQADAAEAAAAFAAYAAQADAAEAAAAGAAUAAQADAAEAAAAHAAQAAQADAAEAAAAHAAYAAQADAAEAAAA=")
+tile_set = SubResource("TileSet_bo1nx")
+
+[node name="Pieces" type="TileMapLayer" parent="." unique_id=547454663]
+unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAABAAYAAAAAAAAAAQABAAUAAAAAAAAAAQABAAQAAAAAAAAAAQABAAMAAAAAAAAAAQABAAIAAAAAAAAAAQABAAEAAAAAAAAAAQABAAAAAAAAAAAAAQAAAAMAAAAAAAAAAAAHAAMAAAAAAAAAAgAGAAYAAAAAAAAAAwAGAAUAAAAAAAAAAwAGAAQAAAAAAAAAAwAGAAMAAAAAAAAAAwAGAAIAAAAAAAAAAwAGAAEAAAAAAAAAAwAGAAAAAAAAAAAAAwA=")
+tile_set = SubResource("TileSet_8gbba")
+script = ExtResource("9_2cdyc")
+
+[node name="MoveIndicator" type="TileMapLayer" parent="." unique_id=1341306451]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_upw65")
+script = ExtResource("11_upw65")
+
+[node name="Marker" type="TileMapLayer" parent="." unique_id=164916598]
+tile_set = SubResource("TileSet_d1ilt")
+script = ExtResource("4_vjyv8")
+
+[connection signal="signal_deselect" from="." to="AnimationHandler" method="_on_board_signal_deselect"]
+[connection signal="signal_deselect" from="." to="MoveIndicator" method="_on_board_signal_deselect"]
+[connection signal="signal_deselect" from="." to="Marker" method="_on_board_signal_deselect"]
+[connection signal="signal_select" from="." to="AnimationHandler" method="_on_board_signal_select"]
+[connection signal="signal_select" from="." to="Marker" method="_on_board_signal_select"]

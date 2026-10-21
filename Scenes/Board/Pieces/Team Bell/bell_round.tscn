@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://u3ekbunx333i"]
+
+[ext_resource type="Script" uid="uid://bxxe7p2xgij71" path="res://Scenes/Board/Pieces/Team Bell/bell_round.gd" id="1_murxi"]
+[ext_resource type="Script" uid="uid://cujgedwrpts0f" path="res://Scenes/Board/Pieces/Movement Rules/move_rule_pawn.gd" id="2_ieqc8"]
+[ext_resource type="Texture2D" uid="uid://irk6p0u6khdl" path="res://Assets/Piece Sprites/TacticsChessSpriteSheet_16bit.png" id="3_ieqc8"]
+
+[sub_resource type="Resource" id="Resource_jjvhh"]
+script = ExtResource("2_ieqc8")
+metadata/_custom_type_script = "uid://cujgedwrpts0f"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aif8j"]
+atlas = ExtResource("3_ieqc8")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwmxc"]
+atlas = ExtResource("3_ieqc8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1iuq"]
+atlas = ExtResource("3_ieqc8")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_murxi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aif8j")
+}],
+"loop": 1,
+"name": &"hover",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwmxc")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1iuq")
+}],
+"loop": 1,
+"name": &"selected",
+"speed": 5.0
+}]
+
+[node name="Bell_round" type="Node2D" unique_id=1864837596]
+script = ExtResource("1_murxi")
+moveRule = SubResource("Resource_jjvhh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1211797153]
+sprite_frames = SubResource("SpriteFrames_murxi")
+animation = &"idle"
